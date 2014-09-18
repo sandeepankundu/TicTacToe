@@ -4,7 +4,39 @@
 	 .boxstyle {
 		height : 50px;
 		width : 50px ;
-		background-color: red;
+		/*border:1px solid blue;
+		background-color: red;*/
+	}
+	.winninghighlight{
+		background-color:#E0FFFF;
+		border:5px solid GREEN;
+		opacity: 0.4;
+    	filter: alpha(opacity=40);
+	}
+	div.player1 {
+	    width: 49px;
+	    height: 49px;
+	    background: url(images/sprite.png) 0 0;
+	    background-color:#E0FFFF;
+	}
+	div.player2 {
+	    width: 49px;
+	    height: 49px;
+	    background: url(images/sprite.png) -50 0;
+	}
+	div.overlay {
+	    top: 0;
+	    left: 0;
+	    
+	    background-color: #000;
+	    filter:alpha(opacity=50);
+	    -moz-opacity:0.5;
+	    -khtml-opacity: 0.5;
+	    opacity: 0.5;
+	    z-index: 10000;
+	}
+	div.winnerannouncement{
+		font-size: x-large;
 	}
  </style>
  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
@@ -15,5 +47,10 @@
  </head>
  <body>
 	<input type="button" id="btnPlay" value="Play"/>
- </body>
+	<br/>
+	<br/>
+
+	<div id="result" class="winnerannouncement"></div>
+
+</body>
 </html>
