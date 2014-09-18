@@ -24,16 +24,12 @@ var app = (function(){
 
 	var _activePlayerIdx = 0;
 	var _cellClickCounter  =0;
-	//var _playerScore =[0,0];
 
 	var _getCellScore= function( row, col){
 		return magicSquare[row][col];
 	};
 
 	var _model = {
-		getRows: function(){
-			return 3;
-		},
 		resetData: function(){
 			_data  =[
 			  [0,0,0],
@@ -42,6 +38,9 @@ var app = (function(){
 			];
 			_activePlayerIdx =0;
 			_cellClickCounter =0;
+		},
+		getRows: function(){
+			return 3;
 		},
 		getCols: function(){
 			return 3;
@@ -61,16 +60,9 @@ var app = (function(){
 		swapActivePlayer : function () {
 			_activePlayerIdx = (_activePlayerIdx == 0 ? 1: 0)
 		},
-		setData: function(row, col){//, player){
+		setData: function(row, col){
 			if(_data[row][col] ==0){
 				_data[row][col] = { player: _activePlayerIdx};
-				/*
-				var score = _playerScore[_activePlayerIdx];
-				score += _getCellScore(row, col);
-				_playerScore[_activePlayerIdx] = score;
-
-				console.log("Player-" + _activePlayerIdx +": " + score);*/
-
 				return true;
 			}
 			return false;
@@ -99,8 +91,6 @@ var app = (function(){
 
 							if(colSum == 15){
 								weHaveWinner = true;
-								//winningPlayerIndex = i;
-
 								winningInformation= {
 									playerIndex : i,
 									playerName : _players[i],
@@ -247,7 +237,6 @@ var app = (function(){
 				_model = model;
 				_view = view;
 				eventhandlers = eventhandlers || { };
-				//eventhandlers.click = eventhandlers.click || this.playerClick;
 				eventhandlers.click = this.playerClick;
 				eventhandlers.gamestart = eventhandlers.gamestart || _fnEmpty;
 				eventhandlers.gamestop = eventhandlers.gamestop || _fnEmpty;
@@ -308,11 +297,9 @@ var app = (function(){
 				_triggerGameStop();
 			},
 			hide: function(){
-				//__instance_view.addClass("overlay");
 				_disableEvents.call(this);
 			},
 			show: function() {
-				//__instance_view.removeClass("overlay");
 				_fnBindEvents.call(__instance_view);
 				_triggerGameStart.call(this);
 			},
@@ -346,7 +333,7 @@ var app = (function(){
 				};
 				return [
 					 "<tr>",
-						_fnGetAllColumns.apply(this, [model, rownum]),//this.getColTpl(),
+						_fnGetAllColumns.apply(this, [model, rownum]),
 					 "</tr>"
 				   ].join("");
 			},
@@ -379,7 +366,7 @@ var app = (function(){
 				return  [
 					   "<div>",
 						  "<table border='1' cellspacing='0'>",
-							  _fnGetAllRow.apply(this,[model]),//this.getRowTpl(),
+							  _fnGetAllRow.apply(this,[model]),
 						  "</table>",
 					   "</div>"
 					].join("");
@@ -437,29 +424,7 @@ $(document).ready(function (){
 		}
 		else{
 			appController.start();
-			//$('#btnPlay').val("Stop");
 		}
 	};
 	$('#btnPlay').on('click', _onPlayClick);
-
-	/*
-	$(".boxstyle").data({ r:1,c: 3});
-
-	var _test = function(){
-		var xx = $("#a1").data();
-		alert("row:  " + xx.p1  + " col : " + xx.p2);
-	}
-	$('#btnPlay').click ( _test);
-	*/
-
-	
-	//alert( app.view.getTicTacToeTpl());
-	/*
-	$(".boxclick").data({ r:1,c: 3});
-	
-	$(".boxclick").bind('click',function(){
-		//console.log("");
-		var xx = $(".boxclick").data();
-		alert("row:  " + xx.r  + " col : " + xx.c);
-	});*/
 });
